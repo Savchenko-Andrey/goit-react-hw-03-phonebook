@@ -23,12 +23,7 @@ export const Formes = ({ onSubmit }) => {
       validationSchema={validationSchema}
     >
       <FormContact>
-        <div
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
+        <div>
           <FormLabel>
             Name
             <Input type="text" name="name" />
