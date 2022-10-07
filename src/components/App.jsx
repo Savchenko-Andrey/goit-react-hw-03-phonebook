@@ -13,6 +13,20 @@ export class App extends Component {
     filter: '',
   };
   
+  componentDidMount() {
+    const contact = localStorage.getItem('contact');
+    const parsedContact = JSON.parse(contact);
+    if (parsedContact) {
+      this.setState({contact: parsedContact })
+    };
+  };
+
+  componentDidUpdate( prevProps, prevState) {
+    if (this.state.contact !== prevState.contact) {
+      localStorage.setItem('contact', JSON.stringify(this.state.contact))
+    };
+  };
+
   hendleSubmit = ({ name, number }) => {
     const { contact } = this.state;
     const item = {
@@ -21,9 +35,7 @@ export class App extends Component {
       number: number,
     };
 
-    const inContact = contact.find(item => item.name === name)
-
-
+    const inContact = contact.find(item => item.name === name);
     if (!inContact) {
       return this.setState(({ contact }) => ({
         contact: [item, ...contact],
